@@ -3,14 +3,14 @@
 	  <a href="#" class="brand-logo left">Questions in Queue</a>
 	</div>
 </nav>
-<ul class="tabs tabs-transparent right teal darken-2">
+<ul class="tabs tabs-transparent teal darken-2">
 	<li class="tab">
-		<a ui-sref="home">Вопросы</a>
+		<a ng-class="{active: $ctrl.active === 'home'}" ui-sref="home">Вопросы</a>
 	</li>
 	<li class="tab">
-		<a ui-sref="ask">Спросить</a>
+		<a ng-class="{active: $ctrl.active === 'ask'}" ui-sref="ask">Спросить</a>
 	</li>
-	<li class="tab disabled">
-		<a ui-sref="queue">Очередь</a>
+	<li class="tab">
+		<a ng-class="{active: $ctrl.active === 'queue'}" ui-sref="queue">Очередь</a>
 	</li>
 </ul>
