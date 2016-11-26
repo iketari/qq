@@ -1,8 +1,16 @@
 <nav class="navbar">
-  <div class="logo">
-    <h1><a ui-sref="home">{{ $ctrl.name }}</a></h1>
-  </div>
-  <div class="nav-links">
-    <span><a ui-sref="about">about</a></span>
-  </div>
+	<div class="nav-wrapper teal darken-1">
+	  <a href="#" class="brand-logo left">Questions in Queue</a>
+	</div>
 </nav>
+<ul class="tabs tabs-transparent right teal darken-2">
+	<li class="tab">
+		<a ui-sref="home">Вопросы</a>
+	</li>
+	<li class="tab">
+		<a ui-sref="ask">Спросить</a>
+	</li>
+	<li class="tab disabled">
+		<a ui-sref="queue">Очередь</a>
+	</li>
+</ul>
