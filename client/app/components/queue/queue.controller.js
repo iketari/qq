@@ -8,6 +8,7 @@ class QueueController {
 		let ref = firebase.database().ref();
 
 		this.name = 'queue';
+		this.userService = userService;
 
 		this.$questions = $firebaseArray(ref.child('questions'));
 
@@ -17,15 +18,15 @@ class QueueController {
 
 		userService.onChangeAuth((user) => {
 			this.user = user;
-		})
+		});
 	}
 
 	auth () {
-		userService.auth();
+		this.userService.auth();
 	}
 
 	logout () {
-		userService.logOut();
+		this.userService.logOut();
 	}
 }
 

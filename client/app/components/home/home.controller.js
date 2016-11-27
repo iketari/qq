@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 
 class HomeController {
-  constructor($scope, $firebaseArray) {
+  constructor($scope, $firebaseArray, userService) {
 	'ngInject';
 
 	let ref = firebase.database().ref();
@@ -12,7 +12,17 @@ class HomeController {
 		this.questions = data;
 	});
 
+	this.userService = userService;
+
     this.name = 'home';
+  }
+
+  blocked (item) {
+  	return !item.removed;
+  }
+
+  isAdmin () {
+  	return this.userService.isAdmin();
   }
 
   up (question) {
@@ -22,6 +32,16 @@ class HomeController {
 
   down (question) {
   	question.like = question.like !== void 0 ? question.like - 1 : 0;
+  	this.$questions.$save(question);
+  }
+
+  delete (question) {
+  	question.removed = true;
+  	this.$questions.$save(question);
+  }
+
+  approve (question) {
+  	question.approved = true;
   	this.$questions.$save(question);
   }
 }

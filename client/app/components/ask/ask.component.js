@@ -5,7 +5,8 @@ import './ask.scss';
 let askComponent = {
   restrict: 'E',
   bindings: {
-  	qData: '='
+  	qData: '=',
+  	user: '<'
   },
   template,
   controller

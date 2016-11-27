@@ -29,6 +29,10 @@ let userModule = angular.module('user', [
 		this._callbacks.forEach(cb => cb(firebaseUser));
 	});
 
+	this.isAdmin = function () {
+		return this.user && this.user.uid === '7BQgSlXJ4HNVUmRAulgXjqJ4LuD2';
+	}
+
 	this.onChangeAuth = function (cb) {
 		this._callbacks.push(cb);
 	}
@@ -46,6 +50,10 @@ let userModule = angular.module('user', [
 
 	this.getUser = function () {
 		return this.user;
+	}
+
+	this.getUserId = function () {
+		return this.user ? this.user.uid : 'unsigned';
 	}
 })
 
