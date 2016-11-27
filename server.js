@@ -1,15 +1,19 @@
-var express = require('express');
-var app = express();
+'use strict';
 
-app.set('port', (process.env.PORT || 5000));
+let express = require('express');
+let app = express();
+let distPath = __dirname + '/dist';
+
+
+app.set('port', (process.env.PORT || 5005));
 
 // views is directory for all template files
 
-app.use(express.static(__dirname + '/dist'));
+app.get('/', express.static(distPath, { maxAge: 1 }));
+app.get('/queue', express.static(distPath, {maxAge: 1}));
+app.get('/ask', express.static(distPath, {maxAge: 1}));
 
-app.use('/', express.static('public', { maxAge: 1 }));
-app.use('/queue', express.static('public', {maxAge: 1}));
-app.use('/ask', express.static('public', {maxAge: 1}));
+app.use(express.static(distPath));
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
