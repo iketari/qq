@@ -5,7 +5,8 @@ import './queue.scss';
 let queueComponent = {
   restrict: 'E',
   bindings: {
-  	user: '<'
+  	user: '<',
+  	questions: '<'
   },
   template,
   controller

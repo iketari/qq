@@ -4,9 +4,9 @@
 
 
 	<div class="center-align">
-		<h4 class="white-text"><span ng-show="$ctrl.user" >{{ $ctrl.user.displayName }}, </span>перед тобой</h4>
+		<h4 ng-show="$ctrl.user" class="white-text">Привет! <span>{{ $ctrl.user.displayName }}, </span>перед тобой</h4>
 
-		<h1 class="white-text">42 вопроса</h1>
+		<h1 class="white-text">Вопросов в очереди: {{ $ctrl.questions.length }}</h1>
 
 		<a ui-sref="home" class="waves-effect waves-light btn">
 			<i class="material-icons left">toc</i>К списку

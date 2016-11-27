@@ -5,9 +5,16 @@ window['firebase'] = firebase;
 class QueueController {
 	constructor($scope, $firebaseArray, $firebaseAuth) {
 		'ngInject';
+		let ref = firebase.database().ref();
 
 		this.name = 'queue';
 		this.authObj = $firebaseAuth(firebase.auth());
+
+		this.$questions = $firebaseArray(ref.child('questions'));
+
+		this.$questions.$loaded().then((data) => {
+			this.questions = data;
+		});
 
 		this.authObj.$onAuthStateChanged((firebaseUser) => {
 			console.log(firebaseUser);
