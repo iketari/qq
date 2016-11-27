@@ -9,9 +9,9 @@ app.set('port', (process.env.PORT || 5005));
 
 // views is directory for all template files
 
-app.get('/', express.static(distPath, { maxAge: 1 }));
-app.get('/queue', express.static(distPath, {maxAge: 1}));
-app.get('/ask', express.static(distPath, {maxAge: 1}));
+app.use('/', express.static(distPath, { maxAge: 1 }));
+app.use('/queue', express.static(distPath, {maxAge: 1}));
+app.use('/ask', express.static(distPath, {maxAge: 1}));
 
 app.use(express.static(distPath));
 
