@@ -3,12 +3,11 @@ import firebase from 'firebase';
 window['firebase'] = firebase;
 
 class QueueController {
-	constructor($scope, $firebaseArray, $firebaseAuth) {
+	constructor($scope, $firebaseArray, userService) {
 		'ngInject';
 		let ref = firebase.database().ref();
 
 		this.name = 'queue';
-		this.authObj = $firebaseAuth(firebase.auth());
 
 		this.$questions = $firebaseArray(ref.child('questions'));
 
@@ -16,25 +15,17 @@ class QueueController {
 			this.questions = data;
 		});
 
-		this.authObj.$onAuthStateChanged((firebaseUser) => {
-			console.log(firebaseUser);
-			if (firebaseUser) {
-				this.user = firebaseUser;
-			} else {
-				this.user = null;
-			}
-		});
+		userService.onChangeAuth((user) => {
+			this.user = user;
+		})
 	}
 
 	auth () {
-		this.authObj.$signInWithRedirect('google').then(() =>{})
-			.catch((error) => {
-				console.error("Authentication failed:", error);
-			});
+		userService.auth();
 	}
 
 	logout () {
-		this.authObj.$signOut();
+		userService.logOut();
 	}
 }
 
