@@ -4,7 +4,7 @@
 
 
 	<div class="center-align">
-		<h4 class="white-text">Перед тобой <span ng-show="$ctrl.user" >{{ $ctrl.user.displayName }}</span></h4>
+		<h4 class="white-text"><span ng-show="$ctrl.user" >{{ $ctrl.user.displayName }}, </span>перед тобой</h4>
 
 		<h1 class="white-text">42 вопроса</h1>
 
@@ -14,6 +14,10 @@
 
 		<a ng-click="$ctrl.auth()" ng-show="!$ctrl.user" class="waves-effect waves-light btn">
 			<i class="material-icons left">lock_open</i>Войти с помощью Google
+		</a>
+
+		<a ng-click="$ctrl.logout()" ng-show="$ctrl.user" class="waves-effect waves-light btn">
+			<i class="material-icons left">lock_close</i>Выйти
 		</a>
 	</div>
 </div>

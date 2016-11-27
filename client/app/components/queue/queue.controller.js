@@ -25,6 +25,10 @@ class QueueController {
 				console.error("Authentication failed:", error);
 			});
 	}
+
+	logout () {
+		this.authObj.$signOut();
+	}
 }
 
 export default QueueController;
