@@ -1,13 +1,30 @@
+import firebase from 'firebase';
+
+window['firebase'] = firebase;
+
 class QueueController {
-  constructor($scope, $firebaseArray) {
-  	'ngInject';
+	constructor($scope, $firebaseArray, $firebaseAuth) {
+		'ngInject';
 
-  	// let ref = firebase.database().ref()
+		this.name = 'queue';
+		this.authObj = $firebaseAuth(firebase.auth());
 
-   //  this.messages = $firebaseArray(ref.child('questions'));
+		this.authObj.$onAuthStateChanged((firebaseUser) => {
+			console.log(firebaseUser);
+			if (firebaseUser) {
+				this.user = firebaseUser;
+			} else {
+				this.user = null;
+			}
+		});
+	}
 
-    this.name = 'queue';
-  }
+	auth () {
+		this.authObj.$signInWithRedirect('google').then(() =>{})
+			.catch((error) => {
+				console.error("Authentication failed:", error);
+			});
+	}
 }
 
 export default QueueController;

@@ -4,7 +4,9 @@ import './queue.scss';
 
 let queueComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+  	user: '<'
+  },
   template,
   controller
 };

@@ -5,7 +5,8 @@ import './navbar.scss';
 let navbarComponent = {
   restrict: 'E',
   bindings: {
-	  active: '<'
+	  active: '<',
+	  user: '<'
   },
   template,
   controller
