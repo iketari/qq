@@ -1,5 +1,7 @@
 import firebase from 'firebase'
 
+let us;
+
 class HomeController {
   constructor($scope, $firebaseArray, userService) {
 	'ngInject';
@@ -13,12 +15,17 @@ class HomeController {
 	});
 
 	this.userService = userService;
+	us = userService;
 
     this.name = 'home';
   }
 
   blocked (item) {
-  	return !item.removed;
+  	if (us && us.isAdmin()) {
+  		return !item.removed;
+  	}
+
+  	return item.approved;
   }
 
   isAdmin () {
