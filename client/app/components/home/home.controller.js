@@ -25,7 +25,7 @@ class HomeController {
   		return !item.removed;
   	}
 
-  	return item.approved;
+  	return !item.removed && item.approved;
   }
 
   isAdmin () {
