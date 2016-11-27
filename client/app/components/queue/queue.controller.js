@@ -1,5 +1,11 @@
 class QueueController {
-  constructor() {
+  constructor($scope, $firebaseArray) {
+  	'ngInject';
+
+  	// let ref = firebase.database().ref()
+
+   //  this.messages = $firebaseArray(ref.child('questions'));
+
     this.name = 'queue';
   }
 }
