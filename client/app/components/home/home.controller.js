@@ -3,54 +3,61 @@ import firebase from 'firebase'
 let us;
 
 class HomeController {
-  constructor($scope, $firebaseArray, userService) {
-	'ngInject';
+	constructor($scope, $firebaseArray, userService) {
+		'ngInject';
 
-	let ref = firebase.database().ref();
+		let ref = firebase.database().ref();
 
-	this.$questions = $firebaseArray(ref.child('questions'));
+		this.$questions = $firebaseArray(ref.child('questions'));
 
-	this.$questions.$loaded().then((data) => {
+		this.$questions.$loaded().then((data) => {
 		this.questions = data;
 	});
 
 	this.userService = userService;
-	us = userService;
+		us = userService;
 
-    this.name = 'home';
-  }
+		this.name = 'home';
+	}
 
-  blocked (item) {
-  	if (us && us.isAdmin()) {
-  		return !item.removed;
-  	}
+	blocked (item) {
+		if (us && us.isAdmin()) {
+			return !item.removed;
+		}
 
-  	return !item.removed && item.approved;
-  }
+		return !item.removed && item.approved;
+	}
 
-  isAdmin () {
-  	return this.userService.isAdmin();
-  }
+	isAdmin () {
+		return this.userService.isAdmin();
+	}
 
-  up (question) {
-  	question.like = question.like !== void 0 ? question.like + 1 : 1;
-  	this.$questions.$save(question);
-  }
+	up (question) {
+		this._process(question, {like: question.like !== void 0 ? question.like + 1 : 1});
+	}
 
-  down (question) {
-  	question.like = question.like !== void 0 ? question.like - 1 : 0;
-  	this.$questions.$save(question);
-  }
+	down (question) {
+		this._process(question, {like: question.like !== void 0 ? question.like - 1 : 0});
+	}
 
-  delete (question) {
-  	question.removed = true;
-  	this.$questions.$save(question);
-  }
+	delete (question) {
+		this._process(question, {
+			removed: true,
+			inprogress: false
+		});
+	}
 
-  approve (question) {
-  	question.approved = true;
-  	this.$questions.$save(question);
-  }
+	approve (question) {
+		this._process(question, {
+			approved: true,
+			inprogress: false
+		});
+	}
+
+	_process (question, data) {
+		Object.assign(question, data);
+		this.$questions.$save(question);
+	}
 }
 
 export default HomeController;

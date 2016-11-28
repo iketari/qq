@@ -23,6 +23,10 @@ class QueueController {
 		});
 	}
 
+	getLength () {
+		return this.questions && this.questions.filter(q => q.approved)
+	}
+
 	auth () {
 		this.userService.auth();
 	}

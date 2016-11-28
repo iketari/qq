@@ -7,7 +7,8 @@ let askComponent = {
   bindings: {
   	qData: '=',
   	user: '<',
-  	disabled: '<'
+  	disabled: '<',
+  	invalid: '<',
   },
   template,
   controller
