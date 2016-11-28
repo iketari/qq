@@ -16,8 +16,10 @@ class QueueController {
 			this.questions = data;
 		});
 
+		this.user = userService.getUser();
 		userService.onChangeAuth((user) => {
 			this.user = user;
+			$scope.$apply();
 		});
 	}
 
