@@ -18,7 +18,7 @@
             </div>
             <div class="card-action">
                 <div ng-show="$ctrl.isAdmin()">
-                    <a ng-click="$ctrl.approve(question)" class="green waves-effect waves-light btn">
+                    <a ng-show="!question.approved" ng-click="$ctrl.approve(question)" class="green waves-effect waves-light btn">
                         <i class="material-icons left">visibility</i>Аппрув
                     </a>
                     <a ng-click="$ctrl.delete(question)" class="red waves-effect waves-light btn">

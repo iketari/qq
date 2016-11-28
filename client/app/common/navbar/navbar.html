@@ -1,13 +1,12 @@
 <nav class="navbar">
 	<div class="nav-wrapper teal darken-1">
-	  <a href="#" class="brand-logo left">Questions in Queue</a>
+      <a ui-sref="home" class="brand-logo left">Questions in Queue</a>
 
-	<div ng-show="$ctrl.user" class="chip">
-		<img src="{{ $ctrl.user.photoURL }}" alt="Contact Person">
-		{{ $ctrl.user.displayName }}
-	</div>
-
-	</div>
+      	<div ng-show="$ctrl.user.displayName" class="chip right hide-on-med-and-down">
+			<img ng-show="$ctrl.user.photoURL" src="{{ $ctrl.user.photoURL }}" alt="Contact Person">
+			{{ $ctrl.user.displayName }}
+		</div>
+    </div>
 </nav>
 <ul class="tabs tabs-transparent teal darken-2">
 	<li class="tab">

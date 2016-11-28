@@ -6,7 +6,8 @@ let askComponent = {
   restrict: 'E',
   bindings: {
   	qData: '=',
-  	user: '<'
+  	user: '<',
+  	disabled: '<'
   },
   template,
   controller

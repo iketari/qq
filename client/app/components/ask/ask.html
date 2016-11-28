@@ -9,23 +9,23 @@
 		<form autocomplete="off" ng-submit="$ctrl.save()" class="col s12">
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="first_name" ng-model="$ctrl.qData.first_name" type="text" class="white-text validate">
+					<input ng-disabled="$ctrl.disabled" id="first_name" ng-model="$ctrl.qData.first_name" type="text" class="white-text validate">
 					<label for="first_name">Имя</label>
 				</div>
 				<div class="input-field col s6">
-					<input id="email" ng-model="$ctrl.qData.email" type="text" class="white-text validate">
+					<input ng-disabled="$ctrl.disabled" id="email" ng-model="$ctrl.qData.email" type="text" class="white-text validate">
 					<label for="email">Электронная почта</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="question" ng-model="$ctrl.qData.question" class="materialize-textarea white-text"></textarea>
+					<textarea ng-disabled="$ctrl.disabled" id="question" ng-model="$ctrl.qData.question" class="materialize-textarea white-text"></textarea>
 					<label for="question">Ваш вопрос</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<button class="btn waves-effect waves-light" type="submit" name="action">Отправить
+					<button ng-disabled="$ctrl.disabled" class="btn waves-effect waves-light" type="submit" name="action">Отправить
 						<i class="material-icons right">send</i>
 					</button>
 				</div>
