@@ -57,7 +57,6 @@ class AskController {
 	_invalidUid () {
 		this.disabled = false;
 		this.invalid = true;
-		this.$scope.$apply();
 	}
 
 	_saveToDb (uid) {
@@ -68,7 +67,6 @@ class AskController {
 		this.question.$save().then(() => {
 			this.qData = {};
 			this.disabled = false;
-			this.$scope.$apply();
 		});
 	}
 }
