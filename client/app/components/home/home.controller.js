@@ -16,6 +16,7 @@ class HomeController {
 		Promise.all([userService.getUserId(), this.$questions.$loaded()])
 		.then(([uid, data]) => {
 			this.questions = this._setMine(data, uid);
+			$scope.$apply();
 		});
 
 		this.name = 'home';
