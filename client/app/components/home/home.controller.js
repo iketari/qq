@@ -10,14 +10,21 @@ class HomeController {
 
 		this.$questions = $firebaseArray(ref.child('questions'));
 
+		this.$scope = $scope;
 		this.userService = userService;
 		us = userService;
 
-		Promise.all([userService.getUserId(), this.$questions.$loaded()])
-		.then(([uid, data]) => {
-			this.questions = this._setMine(data, uid);
-			$scope.$apply();
-		});
+		// Promise.all([userService.getUserId(), this.$questions.$loaded()])
+		// .then(([uid, data]) => {
+		// 	this._setMine(data, uid);
+		// });
+
+		this.$questions.$watch((event) => {
+			Promise.all([userService.getUserId(), this.$questions.$loaded()])
+			.then(([uid, data]) => {
+				this._setMine(data, uid);
+			});
+		})
 
 		this.name = 'home';
 	}
@@ -57,10 +64,12 @@ class HomeController {
 	}
 
 	_setMine (questions, uid) {
-		return questions.map(question => {
+		questions.forEach(question => {
 			question.mine = question.uid === uid;
-			return question;
-		})
+		});
+
+		this.questions = questions;
+		this.$scope.$apply();
 	}
 
 	_process (question, data) {
