@@ -6,7 +6,8 @@ let queueComponent = {
   restrict: 'E',
   bindings: {
   	user: '<',
-  	questions: '<'
+  	questions: '<',
+  	$stateParams: '<'
   },
   template,
   controller

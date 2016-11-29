@@ -2,7 +2,7 @@ import firebase from 'firebase';
 
 
 class AskController {
-	constructor($scope, $firebaseObject, $firebaseArray, userService) {
+	constructor($scope, $state, $firebaseObject, $firebaseArray, userService) {
 		'ngInject';
 
 		this.name = 'ask';
@@ -18,6 +18,7 @@ class AskController {
 		this.$firebaseObject = $firebaseObject;
 		this.$firebaseArray = $firebaseArray;
 		this.$scope = $scope;
+		this.$state = $state;
 
 		userService.onChangeAuth(user => {
 			if (!user) return;
@@ -33,7 +34,7 @@ class AskController {
 		this.userService.getUserId()
 			.then(uid => {
 				return this._checkUid(uid).catch(this._invalidUid.bind(this));
-			}).then(this._saveToDb.bind(this))
+			}).then(this._saveToDb.bind(this), this._invalidUid.bind(this));
 	}
 
 	_checkUid (uid) {
@@ -66,6 +67,7 @@ class AskController {
 		this.question.$value = this.qData;
 		this.question.$save().then(() => {
 			this.qData = {};
+			this.$state.go('queue', {from_ask: true});
 			this.disabled = false;
 		});
 	}

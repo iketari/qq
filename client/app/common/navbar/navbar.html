@@ -10,12 +10,12 @@
 </nav>
 <ul class="tabs tabs-transparent teal darken-2">
 	<li class="tab">
-		<a ng-class="{active: $ctrl.active === 'home'}" ui-sref="home">Вопросы</a>
+		<a ui-sref-active="active" ui-sref="home">Вопросы</a>
 	</li>
 	<li class="tab">
-		<a ng-class="{active: $ctrl.active === 'ask'}" ui-sref="ask">Спросить</a>
+		<a ui-sref-active="active" ui-sref="ask">Спросить</a>
 	</li>
 	<li class="tab">
-		<a ng-class="{active: $ctrl.active === 'queue'}" ui-sref="queue">Очередь</a>
+		<a ui-sref-active="active" ui-sref="queue">Очередь</a>
 	</li>
 </ul>

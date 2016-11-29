@@ -3,12 +3,13 @@ import firebase from 'firebase';
 window['firebase'] = firebase;
 
 class QueueController {
-	constructor($scope, $firebaseArray, userService) {
+	constructor($scope, $state, $stateParams, $firebaseArray, userService) {
 		'ngInject';
 		let ref = firebase.database().ref();
 
 		this.name = 'queue';
 		this.userService = userService;
+		this.$stateParams = $stateParams;
 
 		this.$questions = $firebaseArray(ref.child('questions'));
 
@@ -24,7 +25,9 @@ class QueueController {
 	}
 
 	getLength () {
-		return this.questions && this.questions.filter(q => q.approved)
+		return this.questions && this.questions.filter(q => {
+			return q.approved && !q.removed
+		}).length;
 	}
 
 	auth () {

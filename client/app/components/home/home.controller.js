@@ -10,12 +10,13 @@ class HomeController {
 
 		this.$questions = $firebaseArray(ref.child('questions'));
 
-		this.$questions.$loaded().then((data) => {
-		this.questions = data;
-	});
-
-	this.userService = userService;
+		this.userService = userService;
 		us = userService;
+
+		Promise.all([userService.getUserId(), this.$questions.$loaded()])
+		.then(([uid, data]) => {
+			this.questions = this._setMine(data, uid);
+		});
 
 		this.name = 'home';
 	}
@@ -52,6 +53,13 @@ class HomeController {
 			approved: true,
 			inprogress: false
 		});
+	}
+
+	_setMine (questions, uid) {
+		return questions.map(question => {
+			question.mine = question.uid === uid;
+			return question;
+		})
 	}
 
 	_process (question, data) {

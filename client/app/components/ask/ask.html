@@ -7,22 +7,22 @@
 
 	<div class="row">
 		<h5 class="center red-text" ng-show="$ctrl.invalid">
-			Вы уже отправили свой вопрос!<br> Пожалуйста дожитесь его модерации!
+			Вы уже отправили свой вопрос!<br> Пожалуйста дождитесь его проверки!
 		</h5>
 		<form autocomplete="off" ng-submit="$ctrl.save()" class="col s12">
 			<div class="row">
 				<div class="input-field col s6">
-					<input required maxlength="50" ng-disabled="$ctrl.disabled" id="first_name" ng-model="$ctrl.qData.first_name" type="text" class="white-text validate">
+					<input autocomplete="off" required maxlength="50" ng-disabled="$ctrl.disabled" id="first_name" ng-model="$ctrl.qData.first_name" type="text" class="white-text validate">
 					<label for="first_name">Имя</label>
 				</div>
 				<div class="input-field col s6">
-					<input maxlength="150" ng-disabled="$ctrl.disabled" id="email" ng-model="$ctrl.qData.email" type="text" class="white-text validate">
+					<input autocomplete="off" maxlength="150" ng-disabled="$ctrl.disabled" id="email" ng-model="$ctrl.qData.email" type="text" class="white-text validate">
 					<label for="email">Электронная почта</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea maxlength="950" ng-disabled="$ctrl.disabled" id="question" ng-model="$ctrl.qData.question" class="materialize-textarea white-text"></textarea>
+					<textarea autocomplete="off" maxlength="950" ng-disabled="$ctrl.disabled" id="question" ng-model="$ctrl.qData.question" class="materialize-textarea white-text"></textarea>
 					<label for="question">Ваш вопрос</label>
 				</div>
 			</div>

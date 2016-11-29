@@ -17,6 +17,9 @@ let queueModule = angular.module('queue', [
   $stateProvider
     .state('queue', {
       url: '/queue',
+      params: {
+		from_ask: false
+      },
       component: 'queue'
     });
 })

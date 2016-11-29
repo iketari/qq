@@ -4,19 +4,21 @@
 
 
 	<div class="center-align">
-		<h4 ng-show="$ctrl.user" class="white-text">Привет! <span>{{ $ctrl.user.displayName }}, </span>перед тобой</h4>
+		<h4 ng-show="$ctrl.user" class="white-text">Привет! <span>{{ $ctrl.user.displayName || 'Аноним' }}!</span></h4>
 
-		<h1 class="white-text">Вопросов в очереди: {{ $ctrl.questions.length }}</h1>
+		<h5 ng-show="$ctrl.$stateParams.from_ask" class="white-text">Спасибо за вопрос! Вы увидите его <a ui-sref="home">в списке</a> сразу же после проверки модератором! <br>А пока что можете проголосовать за другие вопросы!</h5>
+
+		<h1 class="white-text">Вопросов в очереди: {{ $ctrl.getLength() }}</h1>
 
 		<a ui-sref="home" class="waves-effect waves-light btn">
 			<i class="material-icons left">toc</i>К списку
 		</a>
 
-		<a ng-click="$ctrl.auth()" ng-show="!$ctrl.user" class="waves-effect waves-light btn">
+		<a ng-click="$ctrl.auth()" ng-show="!$ctrl.user || $ctrl.user.isAnonymous" class="waves-effect waves-light btn">
 			<i class="material-icons left">lock_open</i>Войти с помощью Google
 		</a>
 
-		<a ng-click="$ctrl.logout()" ng-show="$ctrl.user" class="waves-effect waves-light btn">
+		<a ng-click="$ctrl.logout()" ng-show="$ctrl.user && !$ctrl.user.isAnonymous" class="waves-effect waves-light btn">
 			<i class="material-icons left">lock_close</i>Выйти
 		</a>
 	</div>
