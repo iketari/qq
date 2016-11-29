@@ -13,8 +13,17 @@ let homeModule = angular.module('home', [
 
   $stateProvider
     .state('home', {
-      url: '/',
-      component: 'home'
+		url: '/',
+		component: 'home',
+		resolve: {
+			// controller will not be loaded until $waitForAuth resolves
+			// Auth refers to our $firebaseAuth wrapper in the example above
+			currentAuth: ['userService',
+				function (userService) {
+				// $waitForAuth returns a promise so the resolve waits for it to complete
+				return userService.waitForAuth();
+			}]
+		}
     });
 })
 

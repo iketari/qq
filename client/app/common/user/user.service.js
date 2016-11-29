@@ -58,4 +58,8 @@ export default function ($firebaseAuth) {
 			}
 		});
 	}
+
+	this.waitForAuth = function () {
+		return this.authObj.$waitForSignIn();
+	}
 }

@@ -15,13 +15,22 @@ let queueModule = angular.module('queue', [
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-    .state('queue', {
-      url: '/queue',
-      params: {
-		from_ask: false
-      },
-      component: 'queue'
-    });
+	.state('queue', {
+		url: '/queue',
+		resolve: {
+			// controller will not be loaded until $waitForAuth resolves
+			// Auth refers to our $firebaseAuth wrapper in the example above
+			currentAuth: ['userService',
+				function (userService) {
+				// $waitForAuth returns a promise so the resolve waits for it to complete
+				return userService.waitForAuth();
+			}]
+		},
+		params: {
+			from_ask: false
+		},
+		component: 'queue'
+	});
 })
 
 .name;

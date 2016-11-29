@@ -26,7 +26,7 @@
                     </a>
                 </div>
 
-                <a ng-disabled="question.mine" ng-click="$ctrl.up(question)" class="waves-effect waves-light btn">
+                <a ng-disabled="!$ctrl.isAdmin() && question.mine" ng-click="$ctrl.up(question)" class="waves-effect waves-light btn">
                     <i class="material-icons left">thumb_up</i>Интересно
                 </a>
                 <a ng-click="$ctrl.down(question)" class="waves-effect waves-light btn">

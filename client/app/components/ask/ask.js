@@ -15,8 +15,17 @@ let askModule = angular.module('ask', [
 
   $stateProvider
     .state('ask', {
-      url: '/ask',
-      component: 'ask'
+		url: '/ask',
+		component: 'ask',
+			resolve: {
+			// controller will not be loaded until $waitForAuth resolves
+			// Auth refers to our $firebaseAuth wrapper in the example above
+			currentAuth: ['userService',
+				function (userService) {
+				// $waitForAuth returns a promise so the resolve waits for it to complete
+				return userService.waitForAuth();
+			}]
+		}
     });
 })
 

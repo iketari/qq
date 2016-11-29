@@ -6,7 +6,6 @@ class AskController {
 		'ngInject';
 
 		this.name = 'ask';
-		this.userService = userService;
 		this.disabled = false;
 
 		let ref = firebase.database().ref();
@@ -15,6 +14,7 @@ class AskController {
 		this.question = $firebaseObject(ref.child('questions').push());
 		this.qData = {};
 
+		this.userService = userService;
 		this.$firebaseObject = $firebaseObject;
 		this.$firebaseArray = $firebaseArray;
 		this.$scope = $scope;
@@ -39,6 +39,10 @@ class AskController {
 
 	_checkUid (uid) {
 		return new Promise((resolve, reject) => {
+
+			if (this.userService.isAdmin()) {
+				return resolve(uid);
+			}
 
 			let own = this.$firebaseArray(this.ref.child('questions')
 						.orderByChild('uid').equalTo(uid));
