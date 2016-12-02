@@ -8,8 +8,8 @@
 
     <div class="row">
 
-        <div ng-repeat="question in $ctrl.questions | orderBy:'-like' | filter: $ctrl.blocked" class="col s12 m12 l12">
-          <div class="card blue-grey darken-1">
+        <div ng-repeat="question in $ctrl.questions | orderBy:['-answered','-like'] | filter: $ctrl.blocked" class="col s12 m12 l12">
+          <div class="card darken-1" ng-class="question.answered ? 'blue' : 'blue-grey'">
             <div class="card-content white-text">
               <span class="new badge" ng-class="{red: question.like < 0, blue: question.like >= 0}" data-badge-caption="rating">{{ question.like }}</span>
               <span class="card-title">{{ question.first_name }}</span>
@@ -18,6 +18,9 @@
             </div>
             <div class="card-action">
                 <div ng-show="$ctrl.isAdmin()">
+					<a ng-show="!question.answered" ng-click="$ctrl.answer(question)" class="blue darken-3 waves-effect waves-light btn">
+                        <i class="material-icons left">spellcheck</i>Ответил
+                    </a>
                     <a ng-show="!question.approved" ng-click="$ctrl.approve(question)" class="green waves-effect waves-light btn">
                         <i class="material-icons left">visibility</i>Аппрув
                     </a>
@@ -27,12 +30,14 @@
                 </div>
 
                 <a ng-show="$ctrl.isAdmin() || !question.mine"
+					ng-disabled="question.answered"
 					ng-click="$ctrl.up(question)"
 					ng-class="{lime: question.voted}"
 					class="waves-effect waves-light btn">
                     <i class="material-icons left">thumb_up</i>Интересно
                 </a>
                 <a ng-click="$ctrl.down(question)"
+					ng-disabled="question.answered"
 					ng-show="$ctrl.isAdmin() || !question.mine"
 					ng-class="{lime: question.voted}"
 					class="waves-effect waves-light btn">

@@ -89,6 +89,13 @@ class HomeController {
 		});
 	}
 
+	answer (question) {
+		this._process(question, {
+			answered: true,
+			inprogress: false
+		})
+	}
+
 	_setMine (questions, uid) {
 		questions.forEach(question => {
 			question.mine = question.uid === uid;
