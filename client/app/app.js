@@ -1,3 +1,6 @@
+import 'jquery/dist/jquery.min.js';
+import 'materialize-css/dist/js/materialize.min.js';
+
 import angular from 'angular';
 import firebase from 'firebase';
 import angularfire from 'angularfire';
