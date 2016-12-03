@@ -61,7 +61,7 @@ class AskController {
 
 	_invalidUid () {
 		this.disabled = false;
-		this.invalid = true;
+		this.invalidUid = true;
 	}
 
 	_saveToDb (uid) {
@@ -73,7 +73,12 @@ class AskController {
 			this.qData = {};
 			this.$state.go('queue', {from_ask: true});
 			this.disabled = false;
-		});
+		}, this._onInvalidData.bind(this));
+	}
+
+	_onInvalidData (data) {
+		this.disabled = false;
+		this.invalidForm = true;
 	}
 }
 

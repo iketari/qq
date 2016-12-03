@@ -4,7 +4,7 @@ class NavbarController {
 
 		this.name = 'navbar';
 		this.user = userService.getUser();
-		this.hint = true;
+		this.hint = false;
 		userService.onChangeAuth((user) => {
 			this.user = user;
 			$scope.$apply();

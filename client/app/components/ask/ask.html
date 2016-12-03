@@ -6,9 +6,14 @@
 	</div>
 
 	<div class="row">
-		<h5 class="center red-text" ng-show="$ctrl.invalid">
+		<h5 class="center red-text" ng-show="$ctrl.invalidUid">
 			Вы уже отправили свой вопрос!<br> Пожалуйста дождитесь его проверки!
 		</h5>
+
+		<h5 class="center red-text" ng-show="$ctrl.invalidForm">
+			Пожалуйста, введите имя и ваш вопрос
+		</h5>
+
 		<form autocomplete="off" ng-submit="$ctrl.save()" class="col s12">
 			<div class="row">
 				<div class="input-field col s6">
@@ -22,7 +27,7 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea autocomplete="off" maxlength="950" ng-disabled="$ctrl.disabled" id="question" ng-model="$ctrl.qData.question" class="materialize-textarea white-text"></textarea>
+					<textarea autocomplete="off" required maxlength="950" ng-disabled="$ctrl.disabled" id="question" ng-model="$ctrl.qData.question" class="materialize-textarea white-text"></textarea>
 					<label for="question">Ваш вопрос</label>
 				</div>
 			</div>
