@@ -4,7 +4,7 @@
 	</div>
 	<nav>
 		<div class="nav-wrapper teal darken-1">
-		  <a ng-click="$ctrl.hint = !$ctrl.hint" class="brand-logo offset-s1"><i class="material-icons">question_answer</i>Questions in Queue</a>
+		  <a ng-click="$ctrl.hint = !$ctrl.hint" class="brand-logo offset-s1"><i class="material-icons hide-on-small-only">question_answer</i>Questions in Queue</a>
 	      	<div ng-show="$ctrl.user.displayName" class="chip right hide-on-med-and-down">
 				<img ng-show="$ctrl.user.photoURL" src="{{ $ctrl.user.photoURL }}" alt="Contact Person">
 				{{ $ctrl.user.displayName }}
