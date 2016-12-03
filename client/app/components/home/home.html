@@ -9,7 +9,7 @@
     <div class="row">
 
         <div ng-repeat="question in $ctrl.questions | orderBy:['-answered','-like'] | filter: $ctrl.blocked" class="col s12 m12 l12">
-          <div class="card darken-1" ng-class="question.answered ? 'blue' : 'blue-grey'">
+          <div class="card" ng-class="question.answered ? 'green darken-1' : 'blue-grey darken-1'">
             <div class="card-content white-text">
               <span class="new badge" ng-class="{red: question.like < 0, blue: question.like >= 0}" data-badge-caption="rating">{{ question.like }}</span>
               <span class="card-title">{{ question.first_name }}</span>
