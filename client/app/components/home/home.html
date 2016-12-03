@@ -29,14 +29,12 @@
                     </a>
                 </div>
 
-                <a  ng-disabled="question.answered"
-					ng-click="$ctrl.up(question)"
+                <a  ng-click="$ctrl.up(question)"
 					ng-class="{lime: question.voted}"
 					class="waves-effect waves-light btn">
                     <i class="material-icons left">thumb_up</i>Интересно
                 </a>
-                <a  ng-disabled="question.answered"
-					ng-click="$ctrl.down(question)"
+                <a  ng-click="$ctrl.down(question)"
 					ng-class="{lime: question.voted}"
 					class="waves-effect waves-light btn">
                     <i class="material-icons left">thumb_down</i>Не очень

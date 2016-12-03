@@ -1,21 +1,25 @@
-<nav class="navbar">
-	<div class="nav-wrapper teal darken-1">
-      <a ui-sref="home" class="brand-logo left">Questions in Queue</a>
-
-      	<div ng-show="$ctrl.user.displayName" class="chip right hide-on-med-and-down">
-			<img ng-show="$ctrl.user.photoURL" src="{{ $ctrl.user.photoURL }}" alt="Contact Person">
-			{{ $ctrl.user.displayName }}
-		</div>
-    </div>
-</nav>
-<ul class="tabs tabs-transparent teal darken-2">
-	<li class="tab">
-		<a ui-sref-active="active" ui-sref="home">Вопросы</a>
-	</li>
-	<li class="tab">
-		<a ui-sref-active="active" ui-sref="ask">Спросить</a>
-	</li>
-	<li class="tab">
-		<a ui-sref-active="active" ui-sref="queue">Очередь</a>
-	</li>
-</ul>
+<div class="navbar">
+	<div class="address center teal darken-2 hide-on-med-and-down" ng-class="{'address_active': $ctrl.hint}">
+		<span class="address__title">https://qinq.im/</span>
+	</div>
+	<nav>
+		<div class="nav-wrapper teal darken-1">
+		  <a ng-click="$ctrl.hint = !$ctrl.hint" class="brand-logo offset-s1"><i class="material-icons">question_answer</i>Questions in Queue</a>
+	      	<div ng-show="$ctrl.user.displayName" class="chip right hide-on-med-and-down">
+				<img ng-show="$ctrl.user.photoURL" src="{{ $ctrl.user.photoURL }}" alt="Contact Person">
+				{{ $ctrl.user.displayName }}
+			</div>
+	    </div>
+	</nav>
+	<ul class="tabs tabs-transparent teal darken-3">
+		<li class="tab">
+			<a ui-sref-active="active" ui-sref="home">Вопросы</a>
+		</li>
+		<li class="tab">
+			<a ui-sref-active="active" ui-sref="ask">Спросить</a>
+		</li>
+		<li class="tab">
+			<a ui-sref-active="active" ui-sref="queue">Очередь</a>
+		</li>
+	</ul>
+</div>

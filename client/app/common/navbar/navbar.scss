@@ -10,4 +10,24 @@
     right: 0;
     top: 13px;
   }
+
+  .brand-logo {
+	//   padding-left: 20px
+  }
+
+  .address {
+	  height: 0;
+	  color: #fff;
+	  transition: height 0.5s;
+
+	  .address__title {
+		  font-size: 60px;
+		  line-height: 64px;
+		  vertical-align: middle;
+	  }
+  }
+
+  .address_active {
+	  height: 64px;
+  }
 }
