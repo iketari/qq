@@ -48,13 +48,11 @@ export default function ($firebaseAuth) {
 
 	this.getUserId = function () {
 		return new Promise ((resolve, reject) => {
-			let user = this.authObj.$getAuth();
-
-			if (!user) {
+			if (!this.user) {
 				return this.authObj.$signInAnonymously()
 					.then(user => resolve(user.uid), reject);
 			} else {
-				resolve(user.uid);
+				resolve(this.user.uid);
 			}
 		});
 	}
