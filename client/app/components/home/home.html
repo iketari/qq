@@ -29,15 +29,13 @@
                     </a>
                 </div>
 
-                <a ng-show="$ctrl.isAdmin() || !question.mine"
-					ng-disabled="question.answered"
+                <a  ng-disabled="question.answered"
 					ng-click="$ctrl.up(question)"
 					ng-class="{lime: question.voted}"
 					class="waves-effect waves-light btn">
                     <i class="material-icons left">thumb_up</i>Интересно
                 </a>
-                <a ng-click="$ctrl.down(question)"
-					ng-disabled="question.answered"
+                <a  ng-disabled="question.answered"
 					ng-show="$ctrl.isAdmin() || !question.mine"
 					ng-class="{lime: question.voted}"
 					class="waves-effect waves-light btn">
