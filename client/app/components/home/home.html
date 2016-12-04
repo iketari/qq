@@ -30,12 +30,12 @@
                 </div>
 
                 <a  ng-click="$ctrl.up(question)"
-					ng-class="{lime: question.voted}"
+					ng-class="{lime: $ctrl.isVoted(question)}"
 					class="waves-effect waves-light btn">
                     <i class="material-icons left">thumb_up</i>Интересно
                 </a>
                 <a  ng-click="$ctrl.down(question)"
-					ng-class="{lime: question.voted}"
+					ng-class="{lime: $ctrl.isVoted(question)}"
 					class="waves-effect waves-light btn">
                     <i class="material-icons left">thumb_down</i>Не очень
                 </a>

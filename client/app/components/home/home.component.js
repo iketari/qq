@@ -5,7 +5,8 @@ import './home.scss';
 let homeComponent = {
   restrict: 'E',
   bindings: {
-  	questions: '='
+  	questions: '=',
+  	voted: '<',
   },
   template,
   controller

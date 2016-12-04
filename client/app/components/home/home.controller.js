@@ -11,6 +11,8 @@ class HomeController {
 		this.qRef = qRef;
 		this.$questions = $firebaseArray(qRef);
 
+		this.voted = [];
+
 		this.$scope = $scope;
 		this.$firebaseObject = $firebaseObject;
 		this.$firebaseArray = $firebaseArray;
@@ -20,7 +22,7 @@ class HomeController {
 		this.$questions.$watch((event) => {
 			Promise.all([userService.getUserId(), this.$questions.$loaded()])
 			.then(([uid, data]) => {
-				this._setMine(data, uid);
+				this._update(data, uid);
 			});
 		})
 
@@ -61,7 +63,7 @@ class HomeController {
 				votesRef.push({uid});
 				this._process(question, {like: value});
 			} else {
-				question.voted = true;
+				this.setVoted(question.uid);
 			}
 			this.$scope.$apply();
 		});
@@ -96,18 +98,26 @@ class HomeController {
 		})
 	}
 
-	_setMine (questions, uid) {
-		questions.forEach(question => {
-			question.mine = question.uid === uid;
-		});
+	setVoted (uid) {
+		this.voted.push(uid);
+		setTimeout(() => {
+			this.voted.shift();
+			this.$scope.$apply();
+		}, 1500);
+	}
 
+	isVoted (question) {
+		return this.voted.includes(question.uid);
+	}
+
+	_update (questions, uid) {
 		this.questions = questions;
 		this.$scope.$apply();
 	}
 
 	_process (question, data) {
-		Object.assign(question, data);
-		this.$questions.$save(question);
+		let copy = Object.assign(question, data);
+		this.$questions.$save(copy);
 	}
 }
 
